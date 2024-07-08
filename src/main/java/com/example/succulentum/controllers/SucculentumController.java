@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class SucculentumController {
     @GetMapping("/")
-    public String index() {
+    public String index(
+    ) {
         return "redirect:/collection";
     }
 }

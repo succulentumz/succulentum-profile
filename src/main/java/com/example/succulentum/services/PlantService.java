@@ -14,20 +14,24 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class PlantService {
+
     private final PlantRepository plantRepository;
 
     @Getter
     private List<Plant> plantList = new ArrayList<>();
 
-
-    public List<Plant> listPlants(String englishName) {
+    public List<Plant> listPlants(
+            String englishName
+    ) {
         if (englishName == null) {
             return plantRepository.findAll();
         }
         return plantRepository.findByEnglishName(englishName);
     }
 
-    public void savePlant(Plant plant) {
+    public void savePlant(
+            Plant plant
+    ) {
         log.info("add plant: {}", plant);
         plantRepository.save(plant);
     }
