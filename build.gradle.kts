@@ -5,7 +5,18 @@ plugins {
 }
 
 group = "com.example"
-version = "0.0.1-SNAPSHOT"
+version = "0.0.2-SNAPSHOT"
+
+tasks.withType<Jar> {
+	manifest {
+		attributes["Main-Class"] = "com.example.succulentum.SucculentumApplication"
+	}
+}
+
+tasks.register("copyJar", Copy::class) {
+	from(tasks.named("bootJar"))
+	into("${layout.buildDirectory}/libs")
+}
 
 java {
 	toolchain {
