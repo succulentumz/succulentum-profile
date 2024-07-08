@@ -39,8 +39,8 @@ public class PlantController {
         return "redirect:/collection";
     }
 
-    @GetMapping("/colletion/redir")
-    public String redir(Model model) {
-        return "redirect:/collection";
-    }
+//    @GetMapping("/collection/redir")
+//    public String redir(Model model) {
+//        return "redirect:/collection";
+//    }
 }

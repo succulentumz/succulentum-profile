@@ -9,11 +9,11 @@
 <h4>Подробная информация о растении</h4>
 Название растения: <b>${plant.englishName}</b><br>
 Латинское название растения: <b>${plant.englishName}</b><br>
-Описание растения: <b>z${plant.description}</b><br>
+Описание растения: <b>${plant.description}</b><br>
 
 <hr>
 
-<form action="/collection/plant/delete/{id}" method="post">
+<form action="/collection/plant/delete/${plant.id}" method="post">
     <input type="submit" value="Удалить растение">
 </form>
 </body>
