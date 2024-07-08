@@ -1,34 +1,46 @@
 package com.example.succulentum.services;
 
 import com.example.succulentum.models.Plant;
+import com.example.succulentum.repositories.PlantRepository;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service
+@Slf4j
+@RequiredArgsConstructor
 public class PlantService {
+    private final PlantRepository plantRepository;
+
     @Getter
     private List<Plant> plantList = new ArrayList<>();
-    private Long ID = 0L;
 
-    {
-        plantList.add(new Plant(++ID, "suc1", "latin1", "suc1 lalalallalaalla"));
-        plantList.add(new Plant(++ID, "suc2",  "latin2", "suc2 lalalalalaalala"));
+
+    public List<Plant> listPlants(String englishName) {
+        if (englishName == null) {
+            return plantRepository.findAll();
+        }
+        return plantRepository.findByEnglishName(englishName);
     }
 
-    public void addPlant(Plant plant) {
-        plant.setId(++ID);
-        plantList.add(plant);
+    public void savePlant(Plant plant) {
+        log.info("add plant: {}", plant);
+        plantRepository.save(plant);
     }
 
     public void deletePlant(Long id) {
-        plantList.removeIf(plant -> Objects.equals(plant.getId(), id));
+        plantRepository.deleteById(id);
     }
 
     public Plant getPlantById(Long id) {
-        return plantList.stream().filter(plant -> Objects.equals(plant.getId(), id)).findFirst().orElse(null);
+        return plantRepository.findById(id).orElse(null);
+    }
+
+    public void deleteAllPlants() {
+        plantRepository.deleteAll();
     }
 }

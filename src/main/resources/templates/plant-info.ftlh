@@ -5,16 +5,21 @@
 </head>
 
 <body>
-<h1>My collection:</h1>
-<h4>Подробная информация о растении</h4>
-Название растения: <b>${plant.englishName}</b><br>
-Латинское название растения: <b>${plant.englishName}</b><br>
-Описание растения: <b>${plant.description}</b><br>
+    <h1>My collection:</h1>
+    <h4>Подробная информация о растении</h4>
 
-<hr>
+    <b>Название растения:</b> ${plant.englishName}<br>
+    <b>Латинское название растения:</b> ${plant.englishName}<br>
+    <b>Описание растения:</b>${plant.description}<br>
 
-<form action="/collection/plant/delete/${plant.id}" method="post">
-    <input type="submit" value="Удалить растение">
-</form>
+    <hr>
+
+    <form action="/collection/plant/delete/${plant.id}" method="post">
+        <input type="submit" value="Удалить растение">
+    </form>
+
+    <form action="/collection" method="get">
+        <input type="submit" value="Назад в каталог">
+    </form>
 </body>
 </html>
