@@ -20,7 +20,6 @@ lib/
 
 *.yaml
 #*.properties
-gradle/wrapper/gradle-wrapper.properties
 .DS_Store
 Thumbs.db
 
@@ -28,6 +27,7 @@ Thumbs.db
 
 .gradle/
 !gradle-wrapper.jar
+!gradle-wrapper.property
 
 .project
 .classpath

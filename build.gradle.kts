@@ -7,24 +7,6 @@ plugins {
 group = "com.example"
 version = "0.0.3-SNAPSHOT"
 
-//tasks.withType<Jar> {
-//	manifest {
-//		attributes["Main-Class"] = "com.example.succulentum.SucculentumApplication"
-//	}
-//}
-//
-//tasks.register("copyJar", Copy::class) {
-//	from(tasks.named("bootJar"))
-//	into("${layout.buildDirectory}/libs")
-//}
-//
-//tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootJar> {
-//	manifest {
-//		attributes["Main-Class"] = "com.example.succulentum.SucculentumApplication"
-//	}
-//}
-
-
 java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(22)
