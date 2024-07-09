@@ -19,9 +19,8 @@ lib/
 **/mvn/wrapper/maven-wrapper.properties
 
 *.yaml
-*.yml
-*.properties
-
+#*.properties
+gradle/wrapper/gradle-wrapper.properties
 .DS_Store
 Thumbs.db
 
