@@ -5,7 +5,7 @@ FROM openjdk:22-jdk-slim
 WORKDIR /app
 
 # Копируем JAR файл в контейнер
-COPY build/libs/succulentum-0.0.2-SNAPSHOT.jar app.jar
+COPY build/libs/Succulentum-0.0.3-SNAPSHOT.jar app.jar
 
 # Указываем точку входа для запуска приложения
-ENTRYPOINT ["java", "-cp", "app.jar", "com.example.succulentum.SucculentumApplication"]
+ENTRYPOINT ["java", "-jar", "app.jar"]

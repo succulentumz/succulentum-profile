@@ -32,4 +32,6 @@ Thumbs.db
 .project
 .classpath
 
+META-INF/*
+
 nbproject/
