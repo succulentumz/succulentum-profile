@@ -8,6 +8,6 @@ public class SucculentumController {
     @GetMapping("/")
     public String index(
     ) {
-        return "redirect:/collection";
+        return "main-page";
     }
 }

@@ -32,7 +32,7 @@ public class PlantService {
     public void savePlant(
             Plant plant
     ) {
-        log.info("add plant: {}", plant);
+        log.info("saveUser plant: {}", plant);
         plantRepository.save(plant);
     }
 
