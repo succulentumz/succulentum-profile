@@ -42,17 +42,81 @@
             padding: 10px;
             cursor: pointer;
         }
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
-<form action="/new-user" method="post">
+<form id="registrationForm">
     <h1>Форма регистрации</h1>
+    <div id="error" class="error"></div>
     <label for="username">Имя пользователя:</label>
     <input type="text" id="username" name="username" required>
     <label for="password">Пароль:</label>
-    <input type="password" id="password" name="password" required">
+    <input type="password" id="password" name="password" required>
+    <label for="confirmPassword">Подтвердите пароль:</label>
+    <input type="password" id="confirmPassword" name="confirmPassword" required>
     <input type="hidden" id="roles" name="roles" value="USER">
     <input type="submit" value="Зарегистрироваться">
 </form>
+
+<script>
+    document.getElementById('registrationForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Очистить предыдущие ошибки
+        var errorDiv = document.getElementById('error');
+        errorDiv.textContent = '';
+
+        // Получить значения полей
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('confirmPassword').value;
+
+        // Проверка имени пользователя
+        if (username.length < 3 || username.length > 20) {
+            errorDiv.textContent = 'Имя пользователя должно быть от 3 до 20 символов.';
+            return;
+        }
+
+        // Проверка пароля
+        if (password.length < 8) {
+            errorDiv.textContent = 'Пароль должен быть не менее 8 символов.';
+            return;
+        }
+
+        // Проверка совпадения паролей
+        if (password !== confirmPassword) {
+            errorDiv.textContent = 'Пароли не совпадают.';
+            return;
+        }
+
+        // Если все проверки пройдены
+        var formData = {
+            username: username,
+            password: password,
+            roles: document.getElementById('roles').value
+        };
+
+        fetch('/new-user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        }).then(response => {
+            if (response.ok) {
+                window.location.href = '/';
+            } else {
+                alert('Ошибка регистрации');
+            }
+        }).catch(error => {
+            console.error('Ошибка:', error);
+            alert('Ошибка регистрации');
+        });
+    });
+</script>
 </body>
 </html>
