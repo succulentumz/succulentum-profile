@@ -1,7 +1,7 @@
 package com.example.succulentum.services;
 
-import com.example.succulentum.models.User;
-import com.example.succulentum.repositories.UserRepository;
+import com.example.succulentum.store.entities.UserEntity;
+import com.example.succulentum.store.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -12,8 +12,8 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public void saveUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+    public void saveUser(UserEntity userEntity) {
+        userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
+        userRepository.save(userEntity);
     }
 }

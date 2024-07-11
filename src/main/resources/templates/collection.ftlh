@@ -46,7 +46,7 @@
             color: red;
             margin-bottom: 10px;
         }
-        .plant {
+        .plantEntity {
             max-width: 600px;
             margin: 10px auto;
             padding: 10px;
@@ -54,7 +54,7 @@
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .plant p {
+        .plantEntity p {
             margin: 0;
         }
     </style>
@@ -70,9 +70,9 @@
     <input type="submit" value="Найти">
 </form>
 
-<#list plants as plant>
-    <div class="plant">
-        <p><b>${plant.englishName} (${plant.latinName})</b> | <a href="/collection/plant/${plant.id}">Подробнее...</a></p>
+<#list plants as plantEntity>
+    <div class="plantEntity">
+        <p><b>${plantEntity.englishName} (${plantEntity.latinName})</b> | <a href="/collection/plantEntity/${plantEntity.id}">Подробнее...</a></p>
     </div>
 <#else>
     <h3>У вас пока нет растений. Спешите добавить!</h3>
@@ -80,7 +80,7 @@
 
 <hr>
 <h3>Добавить в коллекцию</h3>
-<form id="addPlantForm" action="collection/plant/create" method="post">
+<form id="addPlantForm" action="collection/plantEntity/create" method="post">
     <label>Название растения:</label>
     <input type="text" name="englishName" id="englishName">
     <div id="englishNameError" class="error"></div>

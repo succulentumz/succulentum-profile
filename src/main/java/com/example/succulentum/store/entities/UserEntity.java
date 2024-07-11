@@ -1,4 +1,4 @@
-package com.example.succulentum.models;
+package com.example.succulentum.store.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -1,6 +1,6 @@
 package com.example.succulentum.controllers;
 
-import com.example.succulentum.models.User;
+import com.example.succulentum.store.entities.UserEntity;
 import com.example.succulentum.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,9 +17,9 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping(value = "/new-user", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public String newUser(@RequestBody User user) {
-         userService.saveUser(user);
-         log.info("saved user: {}", user);
+    public String newUser(@RequestBody UserEntity userEntity) {
+         userService.saveUser(userEntity);
+         log.info("saved userEntity: {}", userEntity);
          return "redirect:/";
     }
 

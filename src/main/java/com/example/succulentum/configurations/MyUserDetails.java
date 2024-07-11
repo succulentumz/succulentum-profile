@@ -1,36 +1,34 @@
 package com.example.succulentum.configurations;
 
-import com.example.succulentum.models.User;
+import com.example.succulentum.store.entities.UserEntity;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
 public class MyUserDetails implements UserDetails {
-    private User user;
+    private UserEntity userEntity;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.stream(user.getRoles().split(", "))
+        return Arrays.stream(userEntity.getRoles().split(", "))
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
     }
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return userEntity.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return userEntity.getUsername();
     }
 
     @Override

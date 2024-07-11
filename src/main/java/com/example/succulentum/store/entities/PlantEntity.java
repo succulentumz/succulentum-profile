@@ -1,4 +1,4 @@
-package com.example.succulentum.models;
+package com.example.succulentum.store.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Plant {
+public class PlantEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

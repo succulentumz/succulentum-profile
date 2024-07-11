@@ -1,7 +1,7 @@
 package com.example.succulentum.services;
 
-import com.example.succulentum.models.Plant;
-import com.example.succulentum.repositories.PlantRepository;
+import com.example.succulentum.store.entities.PlantEntity;
+import com.example.succulentum.store.repositories.PlantRepository;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,9 +18,9 @@ public class PlantService {
     private final PlantRepository plantRepository;
 
     @Getter
-    private List<Plant> plantList = new ArrayList<>();
+    private List<PlantEntity> plantEntityList = new ArrayList<>();
 
-    public List<Plant> listPlants(
+    public List<PlantEntity> listPlants(
             String englishName
     ) {
         if (englishName == null) {
@@ -30,17 +30,17 @@ public class PlantService {
     }
 
     public void savePlant(
-            Plant plant
+            PlantEntity plantEntity
     ) {
-        log.info("saveUser plant: {}", plant);
-        plantRepository.save(plant);
+        log.info("saveUser plantEntity: {}", plantEntity);
+        plantRepository.save(plantEntity);
     }
 
     public void deletePlant(Long id) {
         plantRepository.deleteById(id);
     }
 
-    public Plant getPlantById(Long id) {
+    public PlantEntity getPlantById(Long id) {
         return plantRepository.findById(id).orElse(null);
     }
 

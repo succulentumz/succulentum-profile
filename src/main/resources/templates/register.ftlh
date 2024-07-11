@@ -100,7 +100,7 @@
             roles: document.getElementById('roles').value
         };
 
-        fetch('/new-user', {
+        fetch('/new-userEntity', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

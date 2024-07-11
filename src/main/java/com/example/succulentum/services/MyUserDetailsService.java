@@ -1,8 +1,8 @@
 package com.example.succulentum.services;
 
 import com.example.succulentum.configurations.MyUserDetails;
-import com.example.succulentum.models.User;
-import com.example.succulentum.repositories.UserRepository;
+import com.example.succulentum.store.entities.UserEntity;
+import com.example.succulentum.store.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,7 +17,7 @@ public class MyUserDetailsService implements UserDetailsService {
     private UserRepository repository;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user = repository.findByUsername(username);
+        Optional<UserEntity> user = repository.findByUsername(username);
         return user.map(MyUserDetails::new)
                 .orElseThrow(() -> new UsernameNotFoundException(username + " not found"));
     }

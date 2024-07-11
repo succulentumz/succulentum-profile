@@ -8,13 +8,13 @@
     <h1>My collection:</h1>
     <h4>Подробная информация о растении</h4>
 
-    <b>Название растения:</b> ${plant.englishName}<br>
-    <b>Латинское название растения:</b> ${plant.englishName}<br>
-    <b>Описание растения:</b>${plant.description}<br>
+    <b>Название растения:</b> ${plantEntity.englishName}<br>
+    <b>Латинское название растения:</b> ${plantEntity.englishName}<br>
+    <b>Описание растения:</b>${plantEntity.description}<br>
 
     <hr>
 
-    <form action="/collection/plant/delete/${plant.id}" method="post">
+    <form action="/collection/plantEntity/delete/${plantEntity.id}" method="post">
         <input type="submit" value="Удалить растение">
     </form>
 

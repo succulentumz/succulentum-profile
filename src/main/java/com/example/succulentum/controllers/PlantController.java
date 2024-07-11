@@ -1,6 +1,6 @@
 package com.example.succulentum.controllers;
 
-import com.example.succulentum.models.Plant;
+import com.example.succulentum.store.entities.PlantEntity;
 import com.example.succulentum.services.PlantService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -40,10 +40,10 @@ public class PlantController {
 
     @PostMapping("/collection/plant/create")
     public String createPlant(
-            Plant plant
+            PlantEntity plantEntity
     ) {
-        plantService.savePlant(plant);
-        log.info("create plant: {}", plant);
+        plantService.savePlant(plantEntity);
+        log.info("create plantEntity: {}", plantEntity);
         return "redirect:/collection";
     }
 
