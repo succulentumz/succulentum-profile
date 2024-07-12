@@ -1,4 +1,4 @@
-package com.example.succulentum.api.exceprions;
+package com.example.succulentum.api.exceptions;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.web.error.ErrorAttributeOptions;

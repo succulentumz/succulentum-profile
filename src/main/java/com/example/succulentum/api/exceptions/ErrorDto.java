@@ -1,4 +1,4 @@
-package com.example.succulentum.api.exceprions;
+package com.example.succulentum.api.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
