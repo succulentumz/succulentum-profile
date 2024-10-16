@@ -1,9 +1,0 @@
-spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/succulentum_profile
-    username: root
-    password: root
-  liquibase:
-    change-log: classpath:/db/changelog/db.changelog-master.xml
-
-

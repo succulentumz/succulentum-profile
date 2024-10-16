@@ -1,7 +1,6 @@
 plugins {
 	java
 	id("org.springframework.boot") version "3.3.1"
-	id("org.liquibase.gradle") version "2.0.3"
 	id("io.spring.dependency-management") version "1.1.5"
 }
 
@@ -25,7 +24,7 @@ repositories {
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+//	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 //	implementation("org.springframework.boot:spring-boot-starter-freemarker")
 //	implementation("org.springframework.boot:spring-boot-starter-mail")
 	implementation("org.springframework.boot:spring-boot-starter-security")
@@ -36,7 +35,7 @@ dependencies {
 
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.postgresql:postgresql:42.7.2")
-	implementation("org.liquibase:liquibase-core")
+//	implementation("org.liquibase:liquibase-core")
 //	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
