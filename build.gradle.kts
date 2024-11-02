@@ -27,9 +27,11 @@ dependencies {
 //	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 //	implementation("org.springframework.boot:spring-boot-starter-freemarker")
 //	implementation("org.springframework.boot:spring-boot-starter-mail")
+
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
 	implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
+
 	implementation("org.keycloak:keycloak-admin-client:25.0.6")
 	implementation("org.jboss.resteasy:resteasy-client:6.2.10.Final")
 

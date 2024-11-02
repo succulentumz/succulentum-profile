@@ -1,23 +1,15 @@
-
 spring:
   application:
-    name: SucculentumProfile
-  datasource:
-    url: jdbc:postgresql://postgres:5432/profile_db
-    username: root
-    password: root
-    driver-class-name: org.postgresql.Driver
-  jpa:
-    hibernate:
-      ddl-auto: update
-      show-sql: true
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: http://localhost:8082/realms/SucProfile
-jwt:
-  auth:
-    converter:
-      resource-id: authenticationClientId
+    name: succulentum-profile
+server:
+  port: 6700
+  servlet:
+    context-path: /auth
 
+app:
+  keycloak:
+    admin:
+      clientId: admin-cli
+      clientSecret: Gp9FyYfC5tftGWz45eYmz1891MZ0U3jg
+    realm: spring
+    serverUrl: http://localhost:9082
