@@ -1,6 +1,12 @@
 spring:
   application:
     name: succulentum-profile
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${app.keycloak.serverUrl}/realms/${app.keycloak.realm}
+
 server:
   port: 6700
   servlet:
