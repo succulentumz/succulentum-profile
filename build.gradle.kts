@@ -24,26 +24,26 @@ repositories {
 }
 
 dependencies {
-//	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-//	implementation("org.springframework.boot:spring-boot-starter-freemarker")
-//	implementation("org.springframework.boot:spring-boot-starter-mail")
-
+	// security
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
 	implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
+	implementation("org.keycloak:keycloak-admin-client:26.0.2")
 
-	implementation("org.keycloak:keycloak-admin-client:25.0.6")
-	implementation("org.jboss.resteasy:resteasy-client:6.2.10.Final")
-
+	// spring boot web
 	implementation("org.springframework.boot:spring-boot-starter-web")
+
+	// postgresql
 	implementation("org.postgresql:postgresql:42.7.2")
-//	implementation("org.liquibase:liquibase-core")
-//	implementation("org.springframework.boot:spring-boot-starter-actuator")
+
+	// lombok
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
+
+	// test
+	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
-	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 tasks.withType<Test> {
