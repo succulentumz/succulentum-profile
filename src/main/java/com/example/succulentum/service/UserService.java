@@ -1,11 +1,10 @@
 package com.example.succulentum.service;
 
-import com.example.succulentum.model.UserRequest;
-import com.example.succulentum.model.UserResponse;
+import com.example.succulentum.dto.user.UserRegistrationRequest;
+import com.example.succulentum.dto.user.UserResponse;
 
 public interface UserService {
-
-    UserResponse createUser(UserRequest newUser);
+    UserResponse createUser(UserRegistrationRequest newUser);
     void sendVerificationEmail(String userId);
     void deleteUser(String userId);
 }

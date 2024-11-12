@@ -1,4 +1,4 @@
-package com.example.succulentum.model;
+package com.example.succulentum.dto.user;
 
 public record UserResponse(
         String id,

@@ -1,8 +1,8 @@
 package com.example.succulentum.service.impl;
 
 import com.example.succulentum.mapper.UserMapper;
-import com.example.succulentum.model.UserRequest;
-import com.example.succulentum.model.UserResponse;
+import com.example.succulentum.dto.user.UserRegistrationRequest;
+import com.example.succulentum.dto.user.UserResponse;
 import com.example.succulentum.service.UserService;
 import com.example.succulentum.service.exceptions.UserNotCreatedException;
 import jakarta.ws.rs.core.Response;
@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     private final Keycloak keycloak;
 
     @Override
-    public UserResponse createUser(UserRequest newUser) {
+    public UserResponse createUser(UserRegistrationRequest newUser) {
         UserRepresentation userRepresentation = UserMapper.toUserRepresentation(newUser);
         UsersResource usersResource = getUsersResource();
         Response response = usersResource.create(userRepresentation);

@@ -1,25 +1,25 @@
 package com.example.succulentum.mapper;
 
-import com.example.succulentum.model.UserRequest;
+import com.example.succulentum.dto.user.UserRegistrationRequest;
 import org.keycloak.representations.idm.CredentialRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
 
 import java.util.List;
 
 public class UserMapper {
-    public static UserRepresentation toUserRepresentation(UserRequest userRequest) {
+    public static UserRepresentation toUserRepresentation(UserRegistrationRequest userRegistrationRequest) {
         UserRepresentation userRepresentation = new UserRepresentation();
         userRepresentation.setEnabled(true);
-        userRepresentation.setEmail(userRequest.email());
-        userRepresentation.setUsername(userRequest.username());
-        userRepresentation.setFirstName(userRequest.firstName());
-        userRepresentation.setLastName(userRequest.lastName());
+        userRepresentation.setEmail(userRegistrationRequest.email());
+        userRepresentation.setUsername(userRegistrationRequest.username());
+        userRepresentation.setFirstName(userRegistrationRequest.firstName());
+        userRepresentation.setLastName(userRegistrationRequest.lastName());
 
         userRepresentation.setEmailVerified(true); //TODO: Change this, when SMTP obtained
 
         CredentialRepresentation credentialRepresentation = new CredentialRepresentation();
         credentialRepresentation.setType(CredentialRepresentation.PASSWORD);
-        credentialRepresentation.setValue(userRequest.password());
+        credentialRepresentation.setValue(userRegistrationRequest.password());
 
         userRepresentation.setCredentials(List.of(credentialRepresentation));
 
