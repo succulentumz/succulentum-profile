@@ -1,6 +1,8 @@
 package com.example.succulentum.service.impl;
 
-import com.example.succulentum.model.NewUser;
+import com.example.succulentum.mapper.UserMapper;
+import com.example.succulentum.model.UserRequest;
+import com.example.succulentum.model.UserResponse;
 import com.example.succulentum.service.UserService;
 import com.example.succulentum.service.exceptions.UserNotCreatedException;
 import jakarta.ws.rs.core.Response;
@@ -8,13 +10,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.resource.UsersResource;
-import org.keycloak.representations.idm.CredentialRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -26,34 +24,20 @@ public class UserServiceImpl implements UserService {
     private final Keycloak keycloak;
 
     @Override
-    public void createUser(NewUser newUser) {
-        UserRepresentation userRepresentation = new UserRepresentation();
-        userRepresentation.setEnabled(true);
-
-        userRepresentation.setEmail(newUser.email());
-        userRepresentation.setUsername(newUser.username());
-        userRepresentation.setFirstName(newUser.firstName());
-        userRepresentation.setLastName(newUser.lastName());
-
-        //When we obtain the smtp need to change this
-//        userRepresentation.setEmailVerified(false);
-        userRepresentation.setEmailVerified(true);
-
-        CredentialRepresentation credentialRepresentation  = new CredentialRepresentation();
-
-        credentialRepresentation.setType(CredentialRepresentation.PASSWORD);
-        credentialRepresentation.setValue(newUser.password());
-
-        userRepresentation.setCredentials(List.of(credentialRepresentation));
-
+    public UserResponse createUser(UserRequest newUser) {
+        UserRepresentation userRepresentation = UserMapper.toUserRepresentation(newUser);
         UsersResource usersResource = getUsersResource();
         Response response = usersResource.create(userRepresentation);
 
         log.info("Status Code: {}", response.getStatus());
-        if (!Objects.equals(201, response.getStatus())) {
+        if (response.getStatus() != 201) {
             throw new UserNotCreatedException("Status code from auth server: " + response.getStatus());
         }
-        log.info("New user has been created");
+
+        String userId = response.getLocation().getPath().replaceAll(".*/([^/]+)$", "$1");
+        log.info("New user has been created with ID: {}", userId);
+
+        return new UserResponse(userId, newUser.username(), newUser.email());
     }
 
     @Override
