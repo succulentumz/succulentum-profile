@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: succulentum-profile
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${app.keycloak.serverUrl}/realms/${app.keycloak.realm}
+
+server:
+  port: 6700
+  servlet:
+    context-path: /auth
+
+app:
+  keycloak:
+    admin:
+      clientId: admin-cli
+      clientSecret: Gp9FyYfC5tftGWz45eYmz1891MZ0U3jg
+    realm: spring
+    serverUrl: http://localhost:9082
