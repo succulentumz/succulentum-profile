@@ -1,0 +1,57 @@
+name: CI Pipeline for Succulentum Profile
+
+on:
+  push:
+    branches:
+      - "*"
+  pull_request:
+    branches:
+      - "*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 21 (Zulu OpenJDK)
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'  
+          java-version: '21'
+
+      - name: Grant permission for Gradle wrapper
+        run: chmod +x ./gradlew
+
+      - name: Start services with Docker Compose
+        run: docker compose -f docker-compose.yml up -d
+
+      - name: Wait for Database
+        run: |
+          until docker compose -f docker-compose.yml exec postgres pg_isready -U keycloak; do
+            echo "Waiting for database...";
+            sleep 5;
+          done
+
+      - name: Build with Gradle
+        run: ./gradlew bootJar --no-daemon
+
+      - name: Run tests
+        run: ./gradlew test --no-daemon
+
+      - name: Run coverage tests
+        if: github.ref == 'refs/heads/master'
+        run: ./gradlew jacocoTestReport check
+
+      - name: Upload test coverage report
+        if: github.ref == 'refs/heads/master'
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: ./build/reports/jacoco/test/html
+
+      - name: Tear down Docker Compose
+        if: always()
+        run: docker compose -f docker-compose.yml down
