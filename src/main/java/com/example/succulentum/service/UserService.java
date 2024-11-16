@@ -22,7 +22,6 @@ public class UserService {
 
     private final Keycloak keycloak;
 
-    @Override
     public UserResponse createUser(UserRegistrationRequest newUser) {
         UserRepresentation userRepresentation = UserMapper.toUserRepresentation(newUser);
         UsersResource usersResource = getUsersResource();

@@ -4,6 +4,7 @@ import com.example.succulentum.dto.user.UserRegistrationRequest;
 import com.example.succulentum.dto.user.UserResponse;
 import com.example.succulentum.service.UserService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("api/users")
 @AllArgsConstructor
+@Slf4j
 public class UsersController {
     private final UserService userService;
 
@@ -22,6 +24,7 @@ public class UsersController {
             @RequestBody UserRegistrationRequest newUser,
             UriComponentsBuilder uriBuilder
     ) {
+        log.info("createUser: {}", newUser);
         UserResponse userResponse = userService.createUser(newUser);
         return ResponseEntity
                 .created(uriBuilder
